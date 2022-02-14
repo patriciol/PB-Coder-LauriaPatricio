@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navbar</title>
+  <!-- font-awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+
+  <!-- styles -->
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <nav>
+    <div class="nav-center">
+      <h5>Formulario de carga!</h1>
+    </div>
+  </nav>
+  
+  <!-- Productos Form -->
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <div>
+      <h3 style="text-align: center; margin-top: 16px;"> Agrega un producto! </h3>
+    </div>
+    <form action="/api/productos" method="post">
+      <div style="margin-bottom: 16px;">
+        <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+          <label for="title"> Producto: </label>
+          <br>
+          <input type="text" name="title" id="title" style="margin-bottom: 16px;" class="input-file">
+        </div>
+        <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+          <label for="thumbnail"> URL: </label>
+          <br>
+          <input type="text" name="thumbnail" id="thumbnail" style="margin-bottom: 16px;" class="input-file">
+        </div>
+        <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+          <label for="price"> Precio: </label>
+          <br>
+          <input type="number" name="price" id="price" style="margin-bottom: 16px;" step=".01" class="input-file">
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;"><input type="submit"
+            value="Agregar producto" class="submit-button"></div>
+      </div>
+    </form>
+  </div>
+
+
+
+  <!-- javascript -->
+  <script src="./browser-app.js"></script>
+</body>
+
+</html>
