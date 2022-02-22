@@ -1,0 +1,34 @@
+<h3 class="text-primary">Vista de productos</h3>
+<br>
+
+{{#if hayProd }}
+<div class="table-responsive">
+    <table class="table table-dark">
+        <tr class="text-warning">
+            <th class="font-wight-bold">Producto</th>
+            <th class="font-wight-bold">Precio</th>
+            <th class="font-wight-bold">Imagen</th>
+        </tr>
+        {{#each arrayProd}}
+        <tr>
+            <td>
+                {{this.title}}
+            </td>
+            <td>
+                ${{this.price}}
+            </td>
+            <td>
+                <img width="40" height="40" src={{this.thumbnail}}>
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+
+</div>
+
+{{else}}
+
+<h3 class="alert alert-danger">No se econtraron datos</h3>
+
+{{/if}}
+<button type="button" class="btn btn-light"><a href="/">Ir a formulario</a></button>

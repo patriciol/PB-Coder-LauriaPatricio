@@ -1,0 +1,33 @@
+<h3 class="text-primary">Historial</h3>
+<br>
+<% if(hayProd) { %>
+    <div class="table-responsive">
+        <table class="table table-dark">
+            <tr class="text-warning">
+                <th class="font-wight-bold">Producto</th>
+                <th class="font-wight-bold">Precio</th>
+                <th class="font-wight-bold">Imagen</th>
+            </tr>
+            <% arrayProd.forEach (prod=> { %>
+                <tr>
+                    <td>
+                        <%= prod.title%>
+                    </td>
+                    <td>
+                        <%= prod.price%>
+                    </td>
+                    <td>
+                        <img src="<%= prod.thumbnail%>" width="40" heith="40">
+                    </td>
+                </tr>
+                <%})%>
+        </table>
+
+    </div>
+    <%} else {%>
+
+        <h3 class="alert alert-danger">No se econtraron datos</h3>
+
+        <%}%>
+
+        <button><a href="/">Ir a Formulario</a></button>
