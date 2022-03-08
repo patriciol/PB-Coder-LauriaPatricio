@@ -1,0 +1,34 @@
+<br>
+<% if(arrayProd.length>0) { %>
+    <div class="row justify-content-around ">
+
+        <% arrayProd.forEach (prod=> { %>
+            <div class="card justify-center  " style="width: 30%;">
+                <img class="card-img-top" style="width: 100%;height: 30%" alt="Card image cap" src=<%=prod.url%> >
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= prod.nombre%>
+                    </h5>
+                    <p class="card-text">
+                        <%= prod.descripcion%>
+                    </p>
+                    <p class="card-text">Stock: <%= prod.stock%>
+                    </p>
+                    <p class="card-text">Precio: <%= prod.precio%>
+                    </p>
+                    
+                    <a href="/api/productos/<%= prod.id%>" class="btn btn-secondary">Detalle</a>
+                   
+
+                </div>
+            </div>
+            <%})%>
+
+    </div>
+    <%} else {%>
+
+        <h3 class="alert alert-danger">No hay productos cargados</h3>
+
+        <%}%>
+
+            <button><a href="/">Ir a Formulario</a></button>

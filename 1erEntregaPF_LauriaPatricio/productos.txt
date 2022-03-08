@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "timestamp": "5/3/2021",
+    "nombre": "Jamon y Queso",
+    "descripcion": "Empanada frita de jamón y mozzarella",
+    "codigo": "0001",
+    "url": "https://www.clarin.com/img/2021/04/12/WYz8Yr8tB_1256x620__1.jpg",
+    "precio": 120,
+    "stock": 40
+  },
+  {
+    "id": 2,
+    "timestamp": "5/3/2021",
+    "nombre": "Verdura",
+    "descripcion": "Empanada horneada con relleno de espinaca y ricotta",
+    "codigo": "0003",
+    "url": "https://www.lacocinadelaabuela.com.ar/wp-content/uploads/2020/10/empanada-de-verdura.png",
+    "precio": 120,
+    "stock": 80
+  },
+  {
+    "nombre": "Bondiola",
+    "descripcion": "Empanada de bondiola, jugo de naranja, cebolla y cilantro",
+    "codigo": "0004",
+    "url": "https://www.voxpopuli.net.ar/files/image/84/84031/60fe3913718f6_905_510!.webp?s=09508a512dd8c2535b393966121e1cd6&d=1641528618&oe=png",
+    "precio": "120",
+    "stock": "50",
+    "id": 3,
+    "timestamp": "xx/xx/xx"
+  },
+  {
+    "nombre": "Mozzarella",
+    "descripcion": "Salsa de tomates mendocinos, mozzarella Fior di latte yaceitunas",
+    "codigo": "0005",
+    "url": "https://w6h5a5r4.rocketcdn.me/wp-content/uploads/2019/06/pizza-con-tomate-albahaca-y-mozzarella-1080x671.jpg",
+    "precio": "1000",
+    "stock": "80",
+    "id": 4,
+    "timestamp": "07/03/2022"
+  }
+]
