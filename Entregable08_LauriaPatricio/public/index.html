@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="/script.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="jumbotron container mt-3">
+        <h3>Ingreso de productos:</h3>
+        <br>
+        <form onsubmit="return addProduct(this)">
+            <div class="form-group">
+                <label for="title">Producto</label>
+                <input type="text" name="title" id="title" class="form-control"  required>
+            </div>
+            <div class="form-group">
+                <label for="price">Precio</label>
+                <input type="number" name="price" id="price" class="form-control"  required>
+            </div>
+            <div class="form-group">
+                <label for="thumbnail">Imagen</label>
+                <input type="text" name="thumbnail" id="thumbnail" class="form-control"  required>
+            </div>
+            <input type="submit" value="Enviar" class="btn btn-success">
+        </form>
+    </div>
+    <div class="jumbotron container mt-3">
+        <h3 class="text-primary">Historial de productos</h3>
+        <br>
+        <div class="table-responsive container">
+            <table class="table table-dark" id="tabla">
+
+            </table>
+
+        </div>
+    </div>
+
+    <div class="jumbotron container mt-3">
+        <h3 class="text-primary">Historial de Mensajes</h3>
+        <form onsubmit="return addMessage(this)">
+            <input type="text" id="username" placeholder="Mail"  required>
+            <input type="text" id="texto" placeholder="Mensaje..." required>
+            <input type="submit" value="Enviar">
+        </form>
+        <br>
+        <div class="table-responsive container">
+            <table class="table" id="historialMensajes">
+
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
