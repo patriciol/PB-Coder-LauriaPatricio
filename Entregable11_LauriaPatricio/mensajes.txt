@@ -1,0 +1,41 @@
+{
+  "id":"mensajes",
+  "mensajes":[
+  {
+    "author": {
+      "id": "pato",
+      "nombre": "patricio",
+      "apellido": "lauria",
+      "edad": "29",
+      "alias": "pato",
+      "avatar": "avatar1"
+    },
+    "text": "HOLA!!",
+    "fecha": "[05/4/2022 02:31:34]"
+  },
+  {
+    "author": {
+      "id": "feli",
+      "nombre": "felipe",
+      "apellido": "alavez",
+      "edad": "20",
+      "alias": "feli2020",
+      "avatar": "avatar2"
+    },
+    "text": "COMO ESTAS??",
+    "fecha": "[05/4/2022 02:33:00]"
+  },
+  {
+    "author": {
+      "id": "dani",
+      "nombre": "daniela",
+      "apellido": "perez",
+      "edad": "25",
+      "alias": "danu",
+      "avatar": "avatar3"
+    },
+    "text": "TODO BIEN??",
+    "fecha": "[05/4/2022 02:33:48]"
+  }
+  ]
+}
