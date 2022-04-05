@@ -1,22 +1,6 @@
 const fs = require('fs');
-
-//
-const { normalize, schema } = require('normalizr')
-const authorSchema = new schema.Entity('author')
-const textSchema = new schema.Entity('text')
-const fechaSchema = new schema.Entity('fecha')
-const postSchema = new schema.Entity('post', {
-    id: 'mensajes',
-    mensajes: [{
-        author: authorSchema,
-        text: textSchema,
-        fecha: fechaSchema
-    }]
-
-});
-   
-//
-
+const util = require('util')
+const { normalizedMensaje } = require('./utils/normlizr')
 class Contenedor {
 
     constructor(url) {
@@ -28,8 +12,8 @@ class Contenedor {
 
             const mensajes = await fs.promises.readFile(this.url, 'utf-8')
             const arrayMensajes = JSON.parse(mensajes)
-            const normalizedMensaje = normalize(arrayMensajes, postSchema);
-            return normalizedMensaje;
+            const normalizadoMensaje = normalizedMensaje(arrayMensajes)
+            return normalizadoMensaje;
         }
         catch (err) {
             console.log(err.message)
@@ -41,7 +25,7 @@ class Contenedor {
         try {
             const productos = await fs.promises.readFile(this.url, 'utf-8')
             const arrayProductos = JSON.parse(productos)
-            arrayProductos.push(nuevoObjeto)
+            arrayProductos.mensajes.push(nuevoObjeto)
             await fs.promises.writeFile(this.url, JSON.stringify(arrayProductos, null, 2));
         }
         catch (err) {

@@ -30,18 +30,18 @@ connectedServer.on("eror", error => console.log(error))
 
 io.on('connection', (socket) => {
     console.log("¡Nuevo cliente conectado!")
+   
     const arreglo = generateArray(5)
-
     socket.emit('productos', arreglo)
-
-      mensajes.getAll()
-            .then(arrayMsg => {
-                socket.emit('mensajes', arrayMsg)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    
+ 
+    mensajes.getAll()
+        .then(arrayMsg => {
+            socket.emit('mensajes', (arrayMsg))
+        })
+        .catch(err => {
+            console.log(err)
+        })
+   
         socket.on('new-msg', async (data) => {
     
             fecha = moment().format('DD/M/YYYY HH:mm:ss')
@@ -50,5 +50,5 @@ io.on('connection', (socket) => {
             let arrayMsg = await mensajes.getAll()
             io.sockets.emit('mensajes', arrayMsg)
         })
-    
+   
 })

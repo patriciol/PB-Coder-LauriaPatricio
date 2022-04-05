@@ -1,14 +1,14 @@
 const socket = io.connect()
 
-
 socket.on('productos', data => {
     let html = `<tr class="text-warning">
 <th class="font-wight-bold">Producto</th>
 <th class="font-wight-bold">Precio</th>
 <th class="font-wight-bold">Imagen</th>
 </tr>`
+
     if (data.length > 0) {
-        data.forEach(e => { 
+        data.forEach(e => {
             html += `<tr>
             <td>
                 ${e.producto}
@@ -52,18 +52,33 @@ function addMessage(e) {
 
 
 
-socket.on('mensajes', data => {
+socket.on('mensajes', (arrayMsg) => {
 
-    let html = `<tr class="text-warning">
+    const tamanoNormalizado = JSON.stringify(arrayMsg).length;
+
+
+
+    const authorSchema = new normalizr.schema.Entity("author");
+    const articleSchema = new normalizr.schema.Entity("article", {
+        author: authorSchema
+    });
+    const postSchema = new normalizr.schema.Entity("post", {
+        messages: [articleSchema]
+    });
+    // --- Objeto Denormalizado ---
+    const denormalizedBlogpost = normalizr.denormalize(arrayMsg.result, postSchema, arrayMsg.entities);
+    const tamanoDesnormalizado = JSON.stringify(denormalizedBlogpost).length;
+    const porcentaje = Math.round(100 - ((tamanoDesnormalizado * 100) / tamanoNormalizado))
+    let html = `<h5>Nivel de comepresion ${porcentaje}%</h5>
+    <tr class="text-warning">
     <th class="font-wight-bold">Alias</th>
     <th class="font-wight-bold">Hora</th>
     <th class="font-wight-bold">Mensaje</th>
     <th class="font-wight-bold">Avatar</th>
     </tr>`
+    if (denormalizedBlogpost.mensajes.length > 0) {
 
-    if (data.length > 0) {
-
-        data.forEach(e => {
+        denormalizedBlogpost.mensajes.forEach(e => {
 
             html += `<tr">
         <td  style="color:blue;font-weight:bold">
@@ -82,6 +97,7 @@ socket.on('mensajes', data => {
         });
     }
     else {
+
         html = `<div class=" contariner bg-light"><p style="font-size:150%;" class="font-weight-bold text-center text-info">No hay mensajes</p></div>`
     }
     document.getElementById('historialMensajes').innerHTML = html
