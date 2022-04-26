@@ -69,11 +69,19 @@ router.get('/info', async (req, res) => {
 
 router.get('/api/randoms', async (req, res) => {
   let { cant } = req.query
-  if(cant=='undefined')
-  {
-let cant=10
-  } 
- console.log(cant)
+  const forked = fork('./computo.js')
+
+
+  if (typeof cant === 'undefined') {
+    cant = 100000000
+  }
+
+  forked.send(cant)
+
+  forked.on('message', objeto => {
+    objeto = JSON.stringify(objeto)
+    res.end(objeto)
+  })
 })
 
 

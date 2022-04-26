@@ -1,16 +1,10 @@
-process.on('message', cant =>{
-    console.log("HIJO cantidad recidida"+cant)
-    let contnueva=+cant-5
-    console.log("HIJO cantidad enviada"+contnueva)
-    process.send(contnueva)
+process.on('message', cant => {
+  let objeto = {}
+  for (let i = 0; i < cant; i++) {
+
+    let numAle = Math.floor(Math.random() * (1000 - 1) + 1)
+    objeto[numAle] = (objeto[numAle] + 1) || 1
+
+  }
+  process.send(objeto)
 })
- //const forked = fork('./computo.js')
- /* 
- // forked.send(cant)
-  console.log("cantidad envaida"+cant)
-  
-  forked.on('message', sum => {
-    console.log("info recbida en el padre por el hijo"+sum)
-    console.log(sum)
-  })
-*/
