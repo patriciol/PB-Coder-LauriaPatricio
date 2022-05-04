@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="jumbotron container mt-3">
+    <h3>Informacion:</h3>
+    <p><b>Argumentos de entrada:</b>
+      <%=objeto.entrada%>
+    </p>
+    <br>
+    <p><b>Sistema Operativo:</b>
+      <%=objeto.so%>
+    </p>
+    <br>
+    <p><b>Version Node.js:</b>
+      <%=objeto.version%>
+    </p>
+    <br>
+    <p><b>Memoria total reservada(rss):</b>
+      <%=objeto.memoria%>
+    </p>
+    <br>
+    <p><b>Path de ejecucion:</b>
+      <%=objeto.path%>
+    </p>
+    <br>
+    <p><b>Process id:</b>
+      <%=objeto.processid%>
+    </p>
+    <br>
+    <p><b>Carpeta del proyecto:</b>
+      <%=objeto.directorio%>
+    </p>
+  </div>
+
+</body>
+
+</html>

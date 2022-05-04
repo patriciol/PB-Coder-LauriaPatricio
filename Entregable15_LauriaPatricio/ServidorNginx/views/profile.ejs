@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="jumbotron container mt-3">
+    <h3>Bienvenido <%= user%>
+    </h3>
+    <button type="button" class="btn btn-outline-danger btn-sm"><a href="/logout" class="">Logout</a>
+    </button>
+
+  </div>
+  <div class="jumbotron container mt-3">
+    <h3 class="text-primary">Historial de productos</h3>
+    <br>
+    <div class="table-responsive container">
+      <table class="table table-dark" id="tabla">
+        <% arrayProd.forEach (prod=> { %>
+
+          <tr>
+            <td>
+              <%= prod.producto %>
+            </td>
+            <td>
+              <%= prod.precio %>
+            </td>
+
+            <td>
+              <img src=<%=prod.url %> width="40" heith="40">
+            </td>
+          </tr>
+          <%})%>
+      </table>
+
+    </div>
+  </div>
+  <div class="jumbotron container mt-3">
+    <h3 class="text-primary">Historial de Mensajes</h3>
+    <form onsubmit="addMessage(this)">
+      <input type="text" id="id" placeholder="mail" required>
+      <br>
+      <input type="text" id="nombre" placeholder="nombre" required>
+      <br>
+      <input type="text" id="apellido" placeholder="apellido" required>
+      <br>
+      <input type="text" id="edad" placeholder="edad" required>
+      <br>
+      <input type="text" id="alias" placeholder="alias" required>
+      <br>
+      <input type="text" id="avatar" placeholder="url" required>
+      <br>
+      <input type="text" id="text" placeholder="Mensaje..." required>
+      <br>
+      <input type="submit" value="Enviar">
+    </form>
+    <br>
+    <div class="table-responsive container">
+      <table class="table" id="historialMensajes">
+
+        <% arrayMensajes.mensajes.forEach (msg=> { %>
+
+          <tr>
+            <td style="color:blue;font-weight:bold">
+              <%= msg.author.alias %>
+            </td>
+            <td style="color:brown;">
+              <%= msg.fecha %>
+            </td>
+            <td style="color:green;font-style:italic">
+              <%= msg.text %>
+            </td>
+            <td style="color:green;font-style:italic">
+              <img src=<%=msg.author.avatar %> width="40" heith="40">
+            </td>
+          </tr>
+          <%})%>
+      </table>
+    </div>
+  </div>
+
+</body>
+
+</html>
