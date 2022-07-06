@@ -30,6 +30,24 @@ const transporter = nodemailer.createTransport({
 
 
 
+const { graphqlHTTP } = require('express-graphql')
+const { buildSchema } = require('graphql')
+const schema = buildSchema(productSchema)
+
+//GraphQL middleware
+router.use('/graphql', graphqlHTTP({
+  schema,
+  rootValue: {
+    productsContainer,
+    cartContainer,
+  },
+  graphiql: true
+}))
+
+const productSchema = require('../../models/graphql/products.graphql.schema')
+
+
+
 router.get('/', async (req, res) => {
   const user = await req.user;
   if (user) {
