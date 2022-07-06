@@ -35,7 +35,7 @@ passport.use('login', new LocalStrategy(async (username, password, done) => {
 passport.use('register', new LocalStrategy({
   passReqToCallback: true,
 },
-  async (req, username, password, done) => {
+  async (req, username,password, done) => {
     try {
       const userObject = {
         email: username,

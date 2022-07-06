@@ -25,6 +25,20 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/register', async (req, res) => {
+  const user = await req.user ;
+  if (user) {
+    const arrayMensajes = await mensajes.getAll()
+
+    const arrayProd = await generateArray(5)
+    return res.render('profile', { user, arrayMensajes, arrayProd })
+
+  }
+  else {
+    return res.render('register');
+  }
+});
+
 router.get('/profile', auth, async (req, res) => {
   const user = await req.user.email;
   const arrayMensajes = await mensajes.getAll()

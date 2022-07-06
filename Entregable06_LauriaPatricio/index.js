@@ -50,10 +50,6 @@ io.on('connection', (socket) => {
         })
 
 
-
-
-
-
     socket.on('new-product', async (data) => {
         await productos.save(data)
         let arrayProd = await productos.getAll();

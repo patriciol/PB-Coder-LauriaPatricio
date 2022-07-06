@@ -1,4 +1,4 @@
-const navToggle = document.querySelector('.nav-toggle')
+/* const navToggle = document.querySelector('.nav-toggle')
 const links = document.querySelector('.links')
 
 navToggle.addEventListener('click', function () {
@@ -9,3 +9,4 @@ const clearFile = (type) => {
   const file = type === 'single' ? document.getElementById('archivo') : document.getElementById('archivos');
   file.value = "";
 };
+ */

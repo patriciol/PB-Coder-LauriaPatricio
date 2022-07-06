@@ -16,5 +16,13 @@ router.post(
   authControllers.login
 );
 
+router.get(
+  '/asd', async (req, res) => {
+
+    return res.render('register');
+  }
+);
+
+
 
 module.exports = router;

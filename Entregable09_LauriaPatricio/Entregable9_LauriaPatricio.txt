@@ -1,0 +1,64 @@
+Creo el DB "Ecommerce"
+	use ecommerce
+
+Inserto 10 productos
+	db.productos.insertOne({title:"Escuadra",price:100,thumbnail:"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",id:1})
+	db.productos.insertOne({title:"Calculadora",price:300,thumbnail:"https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",id:2})
+	db.productos.insertOne({title:"GloboTerráqueo",price:5000,thumbnail:"https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",id:3})
+	db.productos.insertOne({title:"Lapiz",price:580,thumbnail:"https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/pencil-512.png",id:4})
+	db.productos.insertOne({title:"Hoja",price:120,thumbnail:"https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/pencil-512.png",id:5})
+	db.productos.insertOne({title:"Marcador",price:900,thumbnail:"https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/pencil-512.png",id:6})
+	db.productos.insertOne({title:"Borrador",price:1280,thumbnail:"https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/pencil-512.png",id:7})
+	db.productos.insertOne({title:"Regla",price:2300,thumbnail:"https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/pencil-512.png",id:8})
+	db.productos.insertOne({title:"Lapicera",price:2860,thumbnail:"https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/pencil-512.png",id:9})
+	db.productos.insertOne({title:"Compas",price:4320,thumbnail:"https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/pencil-512.png",id:10})
+
+
+Inserto 10 mensajes
+	db.mensajes.insertMany( [ {fecha:"[21/3/202223:54:58]",usuario:"persona1",texto:"Hola!",id:1}, {fecha:"[21/3/202223:55:03]",usuario:"persona1",texto:"Comoestas?",id:2}, {fecha:"[21/3/202223:55:11]",usuario:"persona2",texto:"todobien,vos?",id:3},{fecha:"[21/3/202223:55:20]",usuario:"persona1",texto:"todobien,",id:4}, {fecha:"[21/3/202223:55:26]",usuario:"persona1",texto:"Quealegria!!",id:5},{fecha:"[21/3/202223:55:35]",usuario:"persona2",texto:"tantotiempo!!",id:6},{fecha:"[21/3/202223:56:09]",usuario:"persona3",texto:"Holaatodos!!",id:7},{fecha:"[21/3/202223:56:20]",usuario:"persona3",texto:"Esperoqueestenbien!!",id:8},{fecha:"[21/3/202223:56:30]",usuario:"persona3",texto:"Adios!",id:9},{fecha:"[21/3/202223:56:35]",usuario:"persona1",texto:"Adios!!",id:10}] )
+
+Listar todos los documentos en cada colección
+	db.productos.find()
+	db.mensajes.find()
+
+Mostrar la cantidad de documentos almacenados en cada una de ellas.
+	db.productos.estimatedDocumentCount()
+	db.mensajes.estimatedDocumentCount()
+
+Agregar un producto más en la colección de productos
+	db.productos.insertOne({title:"ProductoNuevo",price:2340,thumbnail:"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",id:11})
+
+Listar los productos con precio menor a 1000 pesos
+	db.productos.find({"price":{$lt:1000}})
+
+Listar los productos con precio entre los 1000 a 3000 pesos
+	db.productos.find({ $and: [{"price":{$gt:1000}},{"price":{$lt:3000}}]})
+
+Listar los productos con precio mayor a 3000 pesos
+	db.productos.find({"price":{$gt:3000}})
+
+Realizar una consulta que traiga sólo el nombre del tercer producto más barato
+	db.productos.find({},{"title":1}).sort({price:1}).skip(2).limit(1)
+
+Hacer una actualización sobre todos los productos, agregando el campo stock a todos ellos con un valor de 100
+	db.productos.updateMany({},{$set: {stock:100}})
+
+Cambiar el stock a cero de los productos con precios mayores a 4000 pesos. 
+	db.productos.updateMany({price:{$gt:4000}},{$set: {stock:0}})
+
+Borrar los productos con precio menor a 1000 pesos 
+	db.productos.deleteMany({price:{$lt:1000}})
+
+Crear un usuario 'pepe' clave: 'asd456' que sólo pueda leer la base de datos ecommerce. Verificar que pepe no pueda cambiar la información.
+	use admin
+	db.createUser({user: "pepe",pwd: "asd456",roles:[{role: "read", db: "ecommerce"}]})
+
+Verificar que pepe no pueda cambiar la información
+	b.productos.insertOne({title:"Escuadra",price:100,thumbnail:"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",id:1})
+	uncaught exception: WriteCommandError({
+        	"ok" : 0,
+        	"errmsg" : "not authorized on ecommerce to execute command { insert: \"productos\", ordered: true, lsid: { id: UUID(\"03eaa325-5676-4d32-8e97-67d99aad2be2\") }, $db: \"ecommerce\" }",
+        	"code" : 13,
+        	"codeName" : "Unauthorized"
+	})
+
